@@ -54,8 +54,9 @@ flags.DEFINE_integer("max_predictions_per_seq", 20,
 
 flags.DEFINE_integer("random_seed", 12345, "Random seed for data generation.")
 
+# Increased dupe_factor from 10 to 15 for better training data variety.
 flags.DEFINE_integer(
-    "dupe_factor", 10,
+    "dupe_factor", 15,
     "Number of times to duplicate the input data (with different masks).")
 
 flags.DEFINE_float("masked_lm_prob", 0.15, "Masked LM probability.")
@@ -84,6 +85,4 @@ class TrainingInstance(object):
     s += "segment_ids: %s\n" % (" ".join([str(x) for x in self.segment_ids]))
     s += "is_random_next: %s\n" % self.is_random_next
     s += "masked_lm_positions: %s\n" % (" ".join(
-        [str(x) for x in self.masked_lm_positions]))
-    s += "masked_lm_labels: %s\n" % (" ".join(
-        [tokenizati
+        [str(x) for x in self.mask
