@@ -52,7 +52,8 @@ class BertConfig(object):
       num_attention_heads: Number of attention heads for each attention layer in
         the Transformer encoder.
       intermediate_size: The size of the "intermediate" (i.e., feed-forward)
-        layer in the Transformer encoder.
+        layer in the Transformer encoder. Typically 4x hidden_size (e.g., 3072
+        for hidden_size=768).
       hidden_act: The non-linear activation function (function or string) in the
         encoder and pooler.
       hidden_dropout_prob: The dropout probability for all fully connected
@@ -77,5 +78,7 @@ class BertConfig(object):
     self.hidden_dropout_prob = hidden_dropout_prob
     self.attention_probs_dropout_prob = attention_probs_dropout_prob
     self.max_position_embeddings = max_position_embeddings
+    # NOTE: type_vocab_size=2 covers the standard sentence A/B pair setup.
+    # Increase this if your task requires more than 2 segment types.
     self.type_vocab_size = type_vocab_size
     self.initializer_range = initializer_range
